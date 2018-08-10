@@ -23,14 +23,12 @@ request(url, function (err, response, body) {
       if(weather.main == undefined){
         res.render('index', {weather: null, error: 'Error, please try again'});
       } else {
-        let weatherText = `It's ${weather.main.temp} degrees in ${weather.name}!`;
+        let celcius = (((weather.main.temp - 32)*5)/9).toFixed(1)
+        let weatherText = `It's ${celcius} degrees in ${weather.name}!`;
         res.render('index', {weather: weatherText, error: null});
       }
     }
   });
-})
-  res.render('index');
-  console.log(req.body.city)
 })
 
 app.listen(3000, function()
